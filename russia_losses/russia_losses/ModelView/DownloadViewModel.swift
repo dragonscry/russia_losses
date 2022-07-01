@@ -19,24 +19,45 @@ class DownloadViemModel: ObservableObject {
     
     func getData() {
         
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
+        guard let url = URL(string: "https://raw.githubusercontent.com/MacPaw/2022-Ukraine-Russia-War-Dataset/main/data/russia_losses_equipment.json"
+                            //                   "https://raw.githubusercontent.com/MacPaw/2022-Ukraine-Russia-War-Dataset/main/data/russia_losses_personnel.json"
+        ) else {
+            print("No URL")
+            return
+            
+        }
         
-        downloadData(fromURL: url) { returnedData in
+        downloadData(fromURL: url) { (returnedData) in
             if let data = returnedData {
+                
                 let jsonString = String(data: data, encoding: .utf8)
-                print(jsonString)
-                guard let newEquipments = try? JSONDecoder().decode([EquipmentModel].self, from: data) else {
-                    print("Can not be decodable!")
+                let parsedJsonString = self.convertNanToString(jsonString)
+                let parsedData = parsedJsonString.data(using: .utf8)
+                
+                let decoder = JSONDecoder()
+                
+                guard let newEquipments = try? decoder.decode([EquipmentModel].self, from: parsedData ?? data) else {
+                    print("Not Decodable")
                     return
+                    
                 }
+                
                 DispatchQueue.main.async { [weak self] in
                     self?.equipments = newEquipments
                 }
-            } else {
+                
+            }
+            
+            else {
                 print("No data returned.")
             }
         }
         
+    }
+    
+    func convertNanToString(_ s: String?) -> String {
+        guard let s = s else {return ""}
+        return s.replacingOccurrences(of: "NaN", with: "-1")
     }
     
     func downloadData(fromURL url: URL, completionHandler: @escaping(_ data: Data?) -> ()) {

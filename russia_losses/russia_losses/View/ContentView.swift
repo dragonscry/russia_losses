@@ -11,15 +11,19 @@ struct ContentView: View {
     
     @StateObject var vm = DownloadViemModel()
     
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    
     var body: some View {
-        List {
-            ForEach(vm.equipments, id: \.self) { equipment in
-                VStack{
-                    Text("title is: \(equipment.date)")
-                    //Text("date: \(equipment.date)")
-                    //Text("day is: \(equipment.day)")
+        NavigationView {
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    ForEach(vm.equipments) { eq in
+                        Text("Date of war \(eq.date)")
+                        Text("Day of war \(eq.day.description)")
+                    }
                 }
             }
+            .navigationTitle("Russian Losses:")
         }
     }
 }

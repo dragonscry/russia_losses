@@ -15,7 +15,7 @@ import Foundation
 //    "POW": 0
 //}
 
-struct PersonalModel: Codable {
+struct PersonalModel: Codable, Hashable {
     let date: String
     let day, personnel: Int
     let personnel_: String
