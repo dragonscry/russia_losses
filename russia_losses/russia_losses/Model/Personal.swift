@@ -15,7 +15,8 @@ import Foundation
 //    "POW": 0
 //}
 
-struct PersonalModel: Codable, Hashable {
+struct PersonalModel: Codable, Hashable, Identifiable {
+    let id = UUID()
     let date: String
     let day, personnel: Int
     let personnel_: String

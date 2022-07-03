@@ -11,20 +11,26 @@ struct ContentView: View {
     
     @StateObject var vm = DownloadViemModel()
     
-    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(vm.equipments) { eq in
-                        Text("Date of war \(eq.date)")
-                        Text("Day of war \(eq.day.description)")
+                        RowLosses(equipment: eq, person: connectLosses(equipment: eq))
                     }
                 }
             }
             .navigationTitle("Russian Losses:")
         }
+    }
+    
+    func connectLosses(equipment: EquipmentModel) -> PersonalModel? {
+        guard let person = vm.personal.first(where: { person in
+            person.date == equipment.date
+        }) else {return nil}
+        return person
     }
 }
 
