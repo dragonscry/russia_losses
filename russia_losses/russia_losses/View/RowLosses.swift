@@ -15,16 +15,31 @@ struct RowLosses: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("Day: \(equipment.day.description)")
-                    .font(.title)
+                    Text("Day: \(equipment.day.description)")
+                        .font(.title)
+                        .padding(.bottom, 5)
                 if let person = person {
+                    Text("Date: \(convertToAnotherDateFormat(date: equipment.date))")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                     Text("Russia lost: \(person.personnel) people")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
             }
         }
-        .padding()
+//        .background(RoundedRectangle(cornerRadius: 12, style: .continuous)
+//            .foregroundColor(.white).shadow(radius: 12))
+//        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+    }
+    
+    func convertToAnotherDateFormat(date: String) -> String {
+        let dateFormatterGet = DateFormatter()
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterGet.dateFormat = "yyy-MM-dd"
+        dateFormatterPrint.dateFormat = "MMM dd, yyyy"
+        let date = dateFormatterGet.date(from: date) ?? Date()
+        return dateFormatterPrint.string(from: date)
     }
 }
 

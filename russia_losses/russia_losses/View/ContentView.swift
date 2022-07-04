@@ -15,13 +15,24 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(vm.equipments) { eq in
-                        RowLosses(equipment: eq, person: connectLosses(equipment: eq))
+            List {
+                ForEach(vm.equipments) { eq in
+                    let person = connectLosses(equipment: eq)
+                    NavigationLink {
+                        DetailLosses(equipment: eq, personal: person)
+                    } label: {
+                        RowLosses(equipment: eq, person: person)
                     }
+                    
                 }
             }
+//            ScrollView {
+//                LazyVGrid(columns: columns) {
+//                    ForEach(vm.equipments) { eq in
+//                        RowLosses(equipment: eq, person: connectLosses(equipment: eq))
+//                    }
+//                }
+//            }
             .navigationTitle("Russian Losses:")
         }
     }
