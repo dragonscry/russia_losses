@@ -7,16 +7,18 @@
 
 import Foundation
 
-//links: https://raw.githubusercontent.com/MacPaw/2022-Ukraine-Russia-War-Dataset/main/data/russia_losses_equipment.json
-//links: https://raw.githubusercontent.com/MacPaw/2022-Ukraine-Russia-War-Dataset/main/data/russia_losses_personnel.json
+//links with data
+//https://raw.githubusercontent.com/MacPaw/2022-Ukraine-Russia-War-Dataset/main/data/russia_losses_equipment.json
+//https://raw.githubusercontent.com/MacPaw/2022-Ukraine-Russia-War-Dataset/main/data/russia_losses_personnel.json
 
 
 class API {
     
-    static let shared = API()
+    static let shared = API() // singleton
     
     private init() {}
     
+    // parse from Data to Decodable Model
     func getParsedData<T>(fromURL url: String, completion: @escaping ([T])-> ()) where T: Decodable {
         
         guard let url = URL(string: url) else {
@@ -29,7 +31,7 @@ class API {
             if let data = returnedData {
                 
                 let jsonString = String(data: data, encoding: .utf8)
-                let parsedJsonString = self.convertNanToString(jsonString)
+                let parsedJsonString = self.handleNaNvalues(jsonString)
                 let parsedData = parsedJsonString.data(using: .utf8)
                 
                 let decoder = JSONDecoder()
@@ -52,7 +54,7 @@ class API {
         }
     }
     
-    
+    //need to recieve data from URL
     func downloadData(fromURL url: URL, completionHandler: @escaping(_ data: Data?) -> ()) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             
@@ -73,7 +75,8 @@ class API {
         }.resume()
     }
     
-    func convertNanToString(_ s: String?) -> String {
+    //need to handle any NaN values
+    func handleNaNvalues(_ s: String?) -> String {
         guard let s = s else {return ""}
         return s.replacingOccurrences(of: "NaN", with: "-1")
     }

@@ -24,9 +24,29 @@ struct DetailLosses: View {
             }
             .font(.system(size: 30))
             
-            Text("Aircraft: \(equipment.aircraft)")
-            Text("Helicopter: \(equipment.helicopter)")
-            Text("Tanks: \(equipment.tank)")
+            Group {
+                Text("Aircraft: \(equipment.aircraft)")
+                Text("Helicopter: \(equipment.helicopter)")
+                Text("Tanks: \(equipment.tank)")
+                Text("APC: \(equipment.apc)")
+                Text("Field Artillery: \(equipment.fieldArtillery)")
+                Text("MRL: \(equipment.mrl)")
+                Text("Drone: \(equipment.drone)")
+                Text("Naval Ship: \(equipment.navalShip)")
+                Text("Anti-Aircraft Warfate: \(equipment.antiAircraftWarfare)")
+                
+            }
+            
+            Group {
+                Text("Special Equipment: \(equipment.specialEquipment != nil ? equipment.specialEquipment!.description : "No Data")")
+                Text("Vehicles and Fuel Tanks: \(equipment.vehiclesAndFuelTanks != nil ? equipment.vehiclesAndFuelTanks!.description : "No Data")")
+                Text("Cruise Missiles: \(equipment.cruiseMissiles != nil ? equipment.cruiseMissiles!.description : "No Data")")
+                Text("Military Auto: \(equipment.militaryAuto)")
+                Text("Fuel Tank: \(equipment.fuelTank)")
+                Text("Mobile SRBM System: \(equipment.mobileSRBMSystem != nil ? equipment.mobileSRBMSystem!.description : "No Data")")
+            }
+            
+
             
             
             Spacer()
@@ -37,30 +57,6 @@ struct DetailLosses: View {
         .background(RoundedRectangle(cornerRadius: 30, style: .continuous).foregroundColor(.white).shadow(radius: 20))
         .padding()
         
-    }
-    
-    var header: some View {
-        VStack {
-            HStack {
-                Text("DAY")
-                    .font(.system(size:110))
-                Spacer()
-                Text("\(equipment.day.description)")
-                    .font(.system(size:110))
-            }
-            HStack {
-                Text("OF")
-                    .font(.system(size: 90))
-                Spacer()
-                VStack {
-                    Text("RUSSIAN")
-                        .font(.system(size: 40))
-                    Text("INVASION")
-                        .font(.system(size: 35))
-                }
-                
-            }
-        }
     }
 }
 
