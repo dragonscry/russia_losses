@@ -31,7 +31,7 @@ class API {
             if let data = returnedData {
                 
                 let jsonString = String(data: data, encoding: .utf8)
-                let parsedJsonString = self.handleNaNvalues(jsonString)
+                let parsedJsonString = handleNaNvalues(jsonString)
                 let parsedData = parsedJsonString.data(using: .utf8)
                 
                 let decoder = JSONDecoder()
@@ -45,7 +45,6 @@ class API {
                 DispatchQueue.main.async {
                     completion(parsedArray)
                 }
-                
             }
             
             else {
@@ -74,13 +73,10 @@ class API {
             
         }.resume()
     }
-    
-    //need to handle any NaN values and convert in to -1
-    func handleNaNvalues(_ s: String?) -> String {
-        guard let s = s else {return ""}
-        return s.replacingOccurrences(of: "NaN", with: "-1")
-    }
-    
-    
-    
+}
+
+//need to handle any NaN values and convert in to -1
+func handleNaNvalues(_ s: String?) -> String {
+    guard let s = s else {return ""}
+    return s.replacingOccurrences(of: "NaN", with: "-1")
 }

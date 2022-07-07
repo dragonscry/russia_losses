@@ -17,6 +17,9 @@
 		9A083407286F33AE006F5AA3 /* DownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A083406286F33AE006F5AA3 /* DownloadViewModel.swift */; };
 		9A17A3D62872201300FDF88C /* RowLosses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A17A3D52872201300FDF88C /* RowLosses.swift */; };
 		9A17A3D82872202600FDF88C /* DetailLosses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A17A3D72872202600FDF88C /* DetailLosses.swift */; };
+		9A17A3DB2877796700FDF88C /* russia_losses_personnel.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A17A3D92877796700FDF88C /* russia_losses_personnel.json */; };
+		9A17A3DC2877796700FDF88C /* russia_losses_equipment.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A17A3DA2877796700FDF88C /* russia_losses_equipment.json */; };
+		9A17A3DF28777A0D00FDF88C /* DataFromLocalJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A17A3DE28777A0D00FDF88C /* DataFromLocalJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		9A083406286F33AE006F5AA3 /* DownloadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadViewModel.swift; sourceTree = "<group>"; };
 		9A17A3D52872201300FDF88C /* RowLosses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowLosses.swift; sourceTree = "<group>"; };
 		9A17A3D72872202600FDF88C /* DetailLosses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLosses.swift; sourceTree = "<group>"; };
+		9A17A3D92877796700FDF88C /* russia_losses_personnel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = russia_losses_personnel.json; sourceTree = "<group>"; };
+		9A17A3DA2877796700FDF88C /* russia_losses_equipment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = russia_losses_equipment.json; sourceTree = "<group>"; };
+		9A17A3DE28777A0D00FDF88C /* DataFromLocalJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFromLocalJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,7 @@
 		9A0833EA286F2EB8006F5AA3 /* russia_losses */ = {
 			isa = PBXGroup;
 			children = (
+				9A17A3DD287779BD00FDF88C /* ReadFile */,
 				9A0833EB286F2EB8006F5AA3 /* russia_lossesApp.swift */,
 				9A0833FF286F3110006F5AA3 /* API */,
 				9A0833FC286F2F3F006F5AA3 /* View */,
@@ -86,6 +93,8 @@
 		9A0833F9286F2F21006F5AA3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9A17A3DA2877796700FDF88C /* russia_losses_equipment.json */,
+				9A17A3D92877796700FDF88C /* russia_losses_personnel.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -123,6 +132,14 @@
 				9A083400286F312F006F5AA3 /* API.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		9A17A3DD287779BD00FDF88C /* ReadFile */ = {
+			isa = PBXGroup;
+			children = (
+				9A17A3DE28777A0D00FDF88C /* DataFromLocalJSON.swift */,
+			);
+			path = ReadFile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,7 +200,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A17A3DB2877796700FDF88C /* russia_losses_personnel.json in Resources */,
 				9A0833F3286F2EBD006F5AA3 /* Preview Assets.xcassets in Resources */,
+				9A17A3DC2877796700FDF88C /* russia_losses_equipment.json in Resources */,
 				9A0833F0286F2EBD006F5AA3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +220,7 @@
 				9A083407286F33AE006F5AA3 /* DownloadViewModel.swift in Sources */,
 				9A083403286F31C9006F5AA3 /* Equipment.swift in Sources */,
 				9A17A3D62872201300FDF88C /* RowLosses.swift in Sources */,
+				9A17A3DF28777A0D00FDF88C /* DataFromLocalJSON.swift in Sources */,
 				9A083405286F31E2006F5AA3 /* Personal.swift in Sources */,
 				9A0833EC286F2EB8006F5AA3 /* russia_lossesApp.swift in Sources */,
 			);
