@@ -13,49 +13,70 @@ struct DetailLosses: View {
     let personal: PersonalModel?
     
     var body: some View {
-        VStack(alignment: .leading) {
-            //header
-            
-            HStack {
-                if let person = personal {
-                    Image(systemName: "person.3.fill")
-                    Text(": \(person.personnel_) \(person.personnel)")
-                }
-            }
-            .font(.system(size: 30))
-            
-            Group {
-                Text("Aircraft: \(equipment.aircraft)")
-                Text("Helicopter: \(equipment.helicopter)")
-                Text("Tanks: \(equipment.tank)")
-                Text("APC: \(equipment.apc)")
-                Text("Field Artillery: \(equipment.fieldArtillery)")
-                Text("MRL: \(equipment.mrl)")
-                Text("Drone: \(equipment.drone)")
-                Text("Naval Ship: \(equipment.navalShip)")
-                Text("Anti-Aircraft Warfate: \(equipment.antiAircraftWarfare)")
+        VStack {
+            VStack(alignment: .leading) {
                 
+                HStack {
+                    if let person = personal {
+                        Image(systemName: "person.3.fill")
+                        Text(": \(person.personnel_) \(person.personnel)")
+                    }
+                }
+                .foregroundColor(.red)
+                
+                .font(.system(size: 30, weight: .bold, design: .rounded))
+                
+                Group {
+                    Text("Aircraft: \(equipment.aircraft)")
+                    Text("Helicopter: \(equipment.helicopter)")
+                    Text("Tanks: \(equipment.tank)")
+                    Text("APC: \(equipment.apc)")
+                    Text("Field Artillery: \(equipment.fieldArtillery)")
+                    Text("MRL: \(equipment.mrl)")
+                    Text("Drone: \(equipment.drone)")
+                    Text("Naval Ship: \(equipment.navalShip)")
+                    Text("Anti-Aircraft Warfate: \(equipment.antiAircraftWarfare)")
+                    
+                }
+                .font(.system(size: 25, weight: .medium, design: .rounded))
+                
+                Group {
+                    
+                    if let specEquip = equipment.specialEquipment {
+                        Text("Special Equipment: \(specEquip)")
+                    }
+                    
+                    if let vehiclesFTanks = equipment.vehiclesAndFuelTanks {
+                        Text("Vehicles and Fuel Tanks: \(vehiclesFTanks)")
+                    }
+                    
+                    if let cruiseMissiles = equipment.cruiseMissiles {
+                        Text("Cruise Missiles: \(cruiseMissiles)")
+                    }
+                    
+                    if equipment.militaryAuto > 0 {
+                        Text("Military Auto: \(equipment.militaryAuto)")
+                    }
+                    if equipment.fuelTank > 0 {
+                        Text("Fuel Tank: \(equipment.fuelTank)")
+                    }
+                    
+                    if let mobSRBM = equipment.mobileSRBMSystem {
+                        if mobSRBM > 0 {
+                            Text("Mobile SRBM System: \(mobSRBM)")
+                        }
+                    }
+                }
+                .font(.system(size: 25, weight: .medium, design: .rounded))
             }
-            
-            Group {
-                Text("Special Equipment: \(equipment.specialEquipment != nil ? equipment.specialEquipment!.description : "No Data")")
-                Text("Vehicles and Fuel Tanks: \(equipment.vehiclesAndFuelTanks != nil ? equipment.vehiclesAndFuelTanks!.description : "No Data")")
-                Text("Cruise Missiles: \(equipment.cruiseMissiles != nil ? equipment.cruiseMissiles!.description : "No Data")")
-                Text("Military Auto: \(equipment.militaryAuto)")
-                Text("Fuel Tank: \(equipment.fuelTank)")
-                Text("Mobile SRBM System: \(equipment.mobileSRBMSystem != nil ? equipment.mobileSRBMSystem!.description : "No Data")")
-            }
-            
-
-            
+            .navigationTitle("DAY: \(equipment.day.description) OF INVASION")
+            .frame(maxWidth: .infinity)
+            .padding(.vertical)
+            .background(RoundedRectangle(cornerRadius: 30, style: .continuous).foregroundColor(.white).shadow(radius: 20))
+            .padding()
             
             Spacer()
         }
-        .navigationTitle("DAY: \(equipment.day.description) OF INVASION")
-        .padding(.horizontal,20)
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-        .background(RoundedRectangle(cornerRadius: 30, style: .continuous).foregroundColor(.white).shadow(radius: 20))
-        .padding()
         
     }
 }

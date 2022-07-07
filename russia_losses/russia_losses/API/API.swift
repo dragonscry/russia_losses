@@ -75,7 +75,7 @@ class API {
         }.resume()
     }
     
-    //need to handle any NaN values
+    //need to handle any NaN values and convert in to -1
     func handleNaNvalues(_ s: String?) -> String {
         guard let s = s else {return ""}
         return s.replacingOccurrences(of: "NaN", with: "-1")
