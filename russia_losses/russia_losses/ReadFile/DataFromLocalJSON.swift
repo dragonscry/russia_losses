@@ -22,23 +22,27 @@ class DataFromLocalJSON {
             return
         }
         
-        let data = try? Data(contentsOf: url)
-        if let data = data {
-            let jsonString = String(data: data, encoding: .utf8)
-            let parsedJsonString = handleNaNvalues(jsonString)
-            let parsedData = parsedJsonString.data(using: .utf8)
+        //let data = try? Data(contentsOf: url)
+        
+        guard let data = try? Data(contentsOf: url) else {
+            print("No Data in url")
+            return
             
-            let decoder = JSONDecoder()
+        }
+        let jsonString = String(data: data, encoding: .utf8)
+        let parsedJsonString = handleNaNvalues(jsonString)
+        let parsedData = parsedJsonString.data(using: .utf8)
+        
+        let decoder = JSONDecoder()
+        
+        guard let parsedArray = try? decoder.decode([T].self, from: parsedData ?? data) else {
+            print("Not Decodable")
+            return
             
-            guard let parsedArray = try? decoder.decode([T].self, from: parsedData ?? data) else {
-                print("Not Decodable")
-                return
-                
-            }
-            
-            DispatchQueue.main.async {
-                completion(parsedArray)
-            }
+        }
+        
+        DispatchQueue.main.async {
+            completion(parsedArray)
         }
     }
 }

@@ -7,14 +7,6 @@
 
 import Foundation
 
-//{
-//    "date": "2022-02-25",
-//    "day": 2,
-//    "personnel": 2800,
-//    "personnel*": "about",
-//    "POW": 0
-//}
-
 struct PersonalModel: Codable, Hashable, Identifiable {
     let id = UUID()
     let date: String

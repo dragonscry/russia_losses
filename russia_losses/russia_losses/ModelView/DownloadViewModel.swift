@@ -15,7 +15,8 @@ class DownloadViemModel: ObservableObject {
     
     init() {
         
-        //to download data from url
+        //MARK: Data from url
+        //uncomment to download data from url
 //        API.shared.getParsedData(fromURL: "https://raw.githubusercontent.com/MacPaw/2022-Ukraine-Russia-War-Dataset/main/data/russia_losses_equipment.json") { array in
 //            self.equipments = array
 //        }
@@ -24,7 +25,8 @@ class DownloadViemModel: ObservableObject {
 //            self.personal = array
 //        }
         
-        //to download data from local json file
+        //MARK: Data from local json file
+        //uncomment to download data from local json file
         DataFromLocalJSON.shared.loadData(fromm: DataFromLocalJSON.losses_equipment) { array in
             self.equipments = array
         }

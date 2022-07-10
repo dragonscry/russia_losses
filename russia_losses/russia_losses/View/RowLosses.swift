@@ -12,6 +12,8 @@ struct RowLosses: View {
     let equipment: EquipmentModel
     let person: PersonalModel?
     
+    let dateFormatString = "MMM dd, yyyy"
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -19,7 +21,7 @@ struct RowLosses: View {
                         .font(.title)
                         .padding(.bottom, 5)
                 if let person = person {
-                    Text("Date: \(convertToAnotherDateFormat(date: equipment.date))")
+                    Text("Date: \(convertToAnotherDateFormat(date: equipment.date, dateFormatt: dateFormatString))")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     Text("Russia lost: \(person.personnel) people")
@@ -28,16 +30,14 @@ struct RowLosses: View {
                 }
             }
         }
-//        .background(RoundedRectangle(cornerRadius: 12, style: .continuous)
-//            .foregroundColor(.white).shadow(radius: 12))
-//        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
     }
     
-    func convertToAnotherDateFormat(date: String) -> String {
+    // func to convert date from json to shorter date
+    func convertToAnotherDateFormat(date: String, dateFormatt: String) -> String {
         let dateFormatterGet = DateFormatter()
         let dateFormatterPrint = DateFormatter()
         dateFormatterGet.dateFormat = "yyy-MM-dd"
-        dateFormatterPrint.dateFormat = "MMM dd, yyyy"
+        dateFormatterPrint.dateFormat = dateFormatt
         let date = dateFormatterGet.date(from: date) ?? Date()
         return dateFormatterPrint.string(from: date)
     }

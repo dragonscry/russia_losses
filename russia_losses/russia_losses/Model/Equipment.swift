@@ -7,22 +7,6 @@
 
 import Foundation
 
-//{
-//    "date": "2022-02-25",
-//    "day": 2,
-//    "aircraft": 10,
-//    "helicopter": 7,
-//    "tank": 80,
-//    "APC": 516,
-//    "field artillery": 49,
-//    "MRL": 4,
-//    "military auto": 100,
-//    "fuel tank": 60,
-//    "drone": 0,
-//    "naval ship": 2,
-//    "anti-aircraft warfare": 0
-//}
-
 struct EquipmentModel: Codable, Hashable, Identifiable {
     
     static func == (lhs: EquipmentModel, rhs: EquipmentModel) -> Bool {
@@ -61,6 +45,7 @@ struct EquipmentModel: Codable, Hashable, Identifiable {
     }
 }
 
+//custom structure because day in json file could be string or ing
 enum Day: Codable, CustomStringConvertible {
     
     var description: String {

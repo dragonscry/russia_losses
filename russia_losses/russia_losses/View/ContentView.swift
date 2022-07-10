@@ -23,16 +23,9 @@ struct ContentView: View {
                     } label: {
                         RowLosses(equipment: eq, person: person)
                     }
-                    
+
                 }
             }
-//            ScrollView {
-//                LazyVGrid(columns: columns) {
-//                    ForEach(vm.equipments) { eq in
-//                        RowLosses(equipment: eq, person: connectLosses(equipment: eq))
-//                    }
-//                }
-//            }
             .navigationTitle("Russian Losses:")
         }
     }
